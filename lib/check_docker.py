@@ -3,72 +3,77 @@
 
 """program"""
 __author__ = "Jamongss"
-__date__ = "2025-08-19"
+__date__ = "2024-09-26"
 __last_modified_by__ = "Jamongss"
-__last_modified_date__ = "2025-09-27"
+__last_modified_date__ = "0000-00-00"
 __maintainer__ = "Jamongss"
 
 ###########
 # imports #
 ###########
+import os
 import sys
-sys.path.append('../')
-from cfg.config import CHECKConfig
-from sub_process import SubProcess
+import docker
+from string_packages import StrPack
 
 #########
 # class #
 #########
 class CheckDocker:
-    def __init__(self, log, container_list,
-                 total_cnt = 0, check_cnt = 0, err_cnt = 0):
+    def __init__(self,
+                 log,
+                 container_list,
+                 total_cnt = 0,
+                 check_cnt = 0,
+                 err_cnt = 0
+                 ):
         self.log = log
-        self.container_list = container_list
+        self.check_engine_list = container_list
         self.total_cnt = total_cnt
         self.check_cnt = check_cnt
         self.err_cnt = err_cnt
 
     def run(self):
-        if '' in self.container_list:
-            return self.total_cnt, self.check_cnt, self.err_cnt
+        self.total_cnt += len(self.check_engine_list)
+        container_list = list()
+        container_dict = dict()
 
-        err_status = ['Exited', 'Restart', 'less than']
+        self.log.info("{} [ ENGINE LIST ] {}\n".format('<' * 30, '>' * 31))
+        self.log.info('*' * 78)
+        self.log.info('-' * 78)
 
-        self.total_cnt += len(self.container_list)
-        engine_list = list()
-        engine_dict = dict()
+        """
+        Call docker client list option
+        all=False -> docker ps (default)
+        all=True  -> docker ps -a
+        """
+        client = docker.from_env()
+        containers = client.containers.list(all=True)
 
-        cmd = CHECKConfig.docker_cmd
-        timeout = 30
+        for container in containers:
+            name = container.name
+            # status = container.status   # running exited
+            # More than detailed status(ex: running, exited, created, dead...)
+            detailed_status = container.attrs['State']['Status']
+            container_dict[name] = detailed_status
+            container_list.append(name)
 
-        sub_proc = SubProcess(cmd, timeout)
-        std_out, std_err = sub_proc.sub_process_popen()
+            # self.log.info(container_list)
+            # self.log.info(container_dict)
 
-        if len(std_out) > 0:
-            for result in std_out.split('\n'):
-                if len(result.split('\t')) == 2:
-                    if result.split('\t')[1] in self.container_list:
-                        engine_list.append(result.split('\t')[1])
-                        service_name = result.split('\t')[1]
-                        service_status = result.split('\t')[0]
-                        engine_dict[service_name] = service_status
-
-        for target in self.container_list:
-            if target in engine_list:
-                for err_code in err_status:
-                    if 'Up' in engine_dict[target] \
-                            and len(engine_dict[target]) < 18:
-                        self.log.info("RUNNING [{}]".format(target))
+        for engine in self.check_engine_list:
+            if engine in container_list:
+                    if container_dict[engine]=='running':
+                        self.log.info(
+                            "{}{}".format(StrPack.RUNNING_STR, engine))
                         self.check_cnt += 1
-                        break
-                    elif err_code not in engine_dict[target]:
-                        self.log.error("ERROR [{}]".format(target))
+                    else:
+                        self.log.error("{}{}".format(StrPack.ERR_STR, engine))
                         self.err_cnt += 1
-                        break
             else:
-                self.log.error("ERROR [{}]".format(target))
+                self.log.error("{}{}".format(StrPack.NOT_EXISTS_STR, engine))
                 self.err_cnt += 1
-                break
+        self.log.info('-' * 78)
+        self.log.info("{}\n".format('*' * 78))
 
         return self.total_cnt, self.check_cnt, self.err_cnt
-

@@ -13,6 +13,7 @@ __maintainer__ = "Jamongss"
 ###########
 import sys
 from sub_process import SubProcess
+from string_packages import StrPack
 
 #########
 # class #
@@ -52,19 +53,21 @@ class CheckSystemctl:
                         system_dict[service_name] = service_status
 
         # Print service status
-        for target in self.sys_list:
-            if target in system_list:
+        for service in self.sys_list:
+            if service in system_list:
                 for running_code in running_status:
-                    if running_code in system_dict[target]:
-                        self.log.info("RUNNING [{}]".format(target))
+                    if running_code in system_dict[service]:
+                        self.log.info(
+                            "{}{}".format(StrPack.RUNNING_STR, service)
+                        )
                         self.check_cnt += 1
                         break
-                    elif running_code not in system_dict[target]:
-                        self.log.error("ERROR [{}]".format(target))
+                    elif running_code not in system_dict[service]:
+                        self.log.error("{}{}".format(StrPack.ERR_STR, service))
                         self.err_cnt += 1
                         break
             else:
-                self.log.error("ERROR [{}]".format(target))
+                self.log.error("{}{}".format(StrPack.NOT_EXISTS_STR, service))
                 self.err_cnt += 1
 
         return self.total_cnt, self.check_cnt, self.err_cnt
