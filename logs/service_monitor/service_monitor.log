@@ -1,0 +1,128 @@
+2025-09-27 17:19:54.351 - ERROR[81] - Traceback (most recent call last):
+  File "service_monitor.py", line 55, in run
+    total_cnt, check_cnt, err_cnt = c_svctl.check_status()
+  File "/DATA/dev_area/jamong/manage_service/lib/control_svctl.py", line 44, in check_status
+    sub_proc = SubProcess(cmd, timeout)
+  File "/DATA/dev_area/jamong/manage_service/lib/sub_process.py", line 38, in __init__
+    self.log = kwargs.get('log', self._setting_logger())
+  File "/DATA/dev_area/jamong/manage_service/lib/sub_process.py", line 49, in _setting_logger
+    log_level=SUBPROCESSConfig.log_level
+  File "/DATA/dev_area/jamong/manage_service/lib/logger.py", line 36, in get_timed_rotating_logger
+    os.makedirs(kwargs.get('log_dir_path'))
+  File "/usr/local/lib/python2.7/os.py", line 150, in makedirs
+    makedirs(head, mode)
+  File "/usr/local/lib/python2.7/os.py", line 150, in makedirs
+    makedirs(head, mode)
+  File "/usr/local/lib/python2.7/os.py", line 150, in makedirs
+    makedirs(head, mode)
+  File "/usr/local/lib/python2.7/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/log'
+
+2025-09-27 17:20:51.671 - ERROR[81] - Traceback (most recent call last):
+  File "service_monitor.py", line 55, in run
+    total_cnt, check_cnt, err_cnt = c_svctl.check_status()
+  File "/DATA/dev_area/jamong/manage_service/lib/control_svctl.py", line 44, in check_status
+    sub_proc = SubProcess(cmd, timeout)
+  File "/DATA/dev_area/jamong/manage_service/lib/sub_process.py", line 38, in __init__
+    self.log = kwargs.get('log', self._setting_logger())
+  File "/DATA/dev_area/jamong/manage_service/lib/sub_process.py", line 49, in _setting_logger
+    log_level=SUBPROCESSConfig.log_level
+  File "/DATA/dev_area/jamong/manage_service/lib/logger.py", line 36, in get_timed_rotating_logger
+    os.makedirs(kwargs.get('log_dir_path'))
+  File "/usr/local/lib/python2.7/os.py", line 150, in makedirs
+    makedirs(head, mode)
+  File "/usr/local/lib/python2.7/os.py", line 150, in makedirs
+    makedirs(head, mode)
+  File "/usr/local/lib/python2.7/os.py", line 150, in makedirs
+    makedirs(head, mode)
+  File "/usr/local/lib/python2.7/os.py", line 157, in makedirs
+    mkdir(name, mode)
+OSError: [Errno 13] Permission denied: '/log'
+
+2025-09-27 17:21:27.649 - ERROR[76] - ERROR [print_time]
+2025-09-27 17:21:27.751 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:21:27.853 - INFO[59] - RUNNING [crond]
+2025-09-27 17:21:27.853 - INFO[75] - ==============================================================================
+2025-09-27 17:21:27.853 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:21:27.853 - INFO[77] - 정상 실행 중인 서비스 개수 : 2
+2025-09-27 17:21:27.853 - INFO[78] - 비정상 실행 중인 서비스 개수 : 1
+2025-09-27 17:21:27.853 - INFO[79] - ==============================================================================
+2025-09-27 17:25:24.430 - ERROR[76] - ERROR [print_time]
+2025-09-27 17:25:24.533 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:25:24.635 - INFO[59] - RUNNING [crond]
+2025-09-27 17:25:24.635 - INFO[75] - ==============================================================================
+2025-09-27 17:25:24.635 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:25:24.635 - INFO[77] - 정상 실행 중인 서비스 개수 : 2
+2025-09-27 17:25:24.635 - INFO[78] - 비정상 실행 중인 서비스 개수 : 1
+2025-09-27 17:25:24.635 - INFO[79] - ==============================================================================
+2025-09-27 17:27:01.400 - ERROR[83] - ERROR [print_time]
+2025-09-27 17:27:01.502 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:27:01.604 - INFO[59] - RUNNING [crond]
+2025-09-27 17:27:01.605 - INFO[75] - ==============================================================================
+2025-09-27 17:27:01.605 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:27:01.605 - INFO[77] - 정상 실행 중인 서비스 개수 : 2
+2025-09-27 17:27:01.605 - INFO[78] - 비정상 실행 중인 서비스 개수 : 1
+2025-09-27 17:27:01.605 - INFO[79] - ==============================================================================
+2025-09-27 17:27:47.458 - ERROR[83] - ERROR [print_time]
+2025-09-27 17:27:47.560 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:27:47.662 - INFO[59] - RUNNING [crond]
+2025-09-27 17:27:47.662 - INFO[75] - ==============================================================================
+2025-09-27 17:27:47.662 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:27:47.662 - INFO[77] - 정상 실행 중인 서비스 개수 : 2
+2025-09-27 17:27:47.662 - INFO[78] - 비정상 실행 중인 서비스 개수 : 1
+2025-09-27 17:27:47.662 - INFO[79] - ==============================================================================
+2025-09-27 17:28:38.113 - INFO[51] - cmd: /DATA/dev_area/jamong/manage_service/lib/engn/svctl status
+2025-09-27 17:28:38.215 - ERROR[85] - ERROR [print_time]
+2025-09-27 17:28:38.317 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:28:38.419 - INFO[59] - RUNNING [crond]
+2025-09-27 17:28:38.419 - INFO[75] - ==============================================================================
+2025-09-27 17:28:38.419 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:28:38.420 - INFO[77] - 정상 실행 중인 서비스 개수 : 2
+2025-09-27 17:28:38.420 - INFO[78] - 비정상 실행 중인 서비스 개수 : 1
+2025-09-27 17:28:38.420 - INFO[79] - ==============================================================================
+2025-09-27 17:31:23.123 - INFO[51] - cmd: {}
+2025-09-27 17:31:23.325 - INFO[77] - RUNNING [print_time]
+2025-09-27 17:31:23.427 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:31:23.530 - INFO[59] - RUNNING [crond]
+2025-09-27 17:31:23.530 - INFO[75] - ==============================================================================
+2025-09-27 17:31:23.530 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:31:23.530 - INFO[77] - 정상 실행 중인 서비스 개수 : 3
+2025-09-27 17:31:23.530 - INFO[78] - 비정상 실행 중인 서비스 개수 : 0
+2025-09-27 17:31:23.530 - INFO[79] - ==============================================================================
+2025-09-27 17:31:43.211 - INFO[51] - cmd: /DATA/dev_area/jamong/manage_service/engn/svctl status
+2025-09-27 17:31:43.412 - INFO[77] - RUNNING [print_time]
+2025-09-27 17:31:43.514 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:31:43.616 - INFO[59] - RUNNING [crond]
+2025-09-27 17:31:43.616 - INFO[75] - ==============================================================================
+2025-09-27 17:31:43.616 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:31:43.616 - INFO[77] - 정상 실행 중인 서비스 개수 : 3
+2025-09-27 17:31:43.616 - INFO[78] - 비정상 실행 중인 서비스 개수 : 0
+2025-09-27 17:31:43.616 - INFO[79] - ==============================================================================
+2025-09-27 17:31:51.239 - INFO[51] - cmd: /DATA/dev_area/jamong/manage_service/engn/svctl status
+2025-09-27 17:31:51.441 - INFO[77] - RUNNING [print_time]
+2025-09-27 17:31:51.542 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:31:51.644 - INFO[59] - RUNNING [crond]
+2025-09-27 17:31:51.645 - INFO[75] - ==============================================================================
+2025-09-27 17:31:51.645 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:31:51.645 - INFO[77] - 정상 실행 중인 서비스 개수 : 3
+2025-09-27 17:31:51.645 - INFO[78] - 비정상 실행 중인 서비스 개수 : 0
+2025-09-27 17:31:51.645 - INFO[79] - ==============================================================================
+2025-09-27 17:41:50.713 - INFO[51] - cmd: /DATA/dev_area/jamong/manage_service/engn/svctl status
+2025-09-27 17:41:50.916 - INFO[77] - RUNNING [print_time]
+2025-09-27 17:41:51.017 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:41:51.120 - INFO[59] - RUNNING [crond]
+2025-09-27 17:41:51.120 - INFO[75] - ==============================================================================
+2025-09-27 17:41:51.120 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:41:51.120 - INFO[77] - 정상 실행 중인 서비스 개수 : 3
+2025-09-27 17:41:51.120 - INFO[78] - 비정상 실행 중인 서비스 개수 : 0
+2025-09-27 17:41:51.121 - INFO[79] - ==============================================================================
+2025-09-27 17:46:24.037 - INFO[51] - cmd: /DATA/dev_area/jamong/manage_service/engn/svctl status
+2025-09-27 17:46:24.240 - INFO[77] - RUNNING [print_time]
+2025-09-27 17:46:24.342 - INFO[61] - RUNNING [haproxy2.5]
+2025-09-27 17:46:24.444 - INFO[59] - RUNNING [crond]
+2025-09-27 17:46:24.445 - INFO[75] - ==============================================================================
+2025-09-27 17:46:24.445 - INFO[76] - 대상 서비스 개수 : 3
+2025-09-27 17:46:24.445 - INFO[77] - 정상 실행 중인 서비스 개수 : 3
+2025-09-27 17:46:24.445 - INFO[78] - 비정상 실행 중인 서비스 개수 : 0
+2025-09-27 17:46:24.445 - INFO[79] - ==============================================================================

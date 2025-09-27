@@ -1,9 +1,12 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.Ai - Jamong"
-__date__ = "creation: 2024-10-13, modification: 2024-10-29"
+__author__ = "Jamongss"
+__date__ = "2024-10-13"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-09-27"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #
@@ -23,3 +26,4 @@ class ElapsedTime:
         required_time = end_time - self.proc_start_time
 
         return self.proc_start_time, required_time
+

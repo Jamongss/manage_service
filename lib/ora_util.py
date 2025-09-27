@@ -1,21 +1,18 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.ai - Jamong"
-__date__ = "Creation: 2024-10-31, Modification: 2024-11-12"
+__author__ = "Jamongss"
+__date__ = "2025-10-30"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-09-27"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #
 ###########
 import sys
 import traceback
-
-###########
-# options #
-###########
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 #########
 # class #
@@ -258,3 +255,4 @@ class OracleQuery(object):
             self.db.conn.commit()
         except Exception:
             raise Exception(traceback.format_exc())
+

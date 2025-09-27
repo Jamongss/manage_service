@@ -24,6 +24,11 @@ from lib.logger import get_timed_rotating_logger
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+###################
+# global variable #
+###################
+manage_root = os.path.dirname(os.path.abspath(__file__))
+
 #########
 # class #
 #########
@@ -32,7 +37,7 @@ class DeleteFile:
         # Set Logger
         self.log = get_timed_rotating_logger(
             logger_name=DELConfig.logger_name,
-            log_dir_path=DELConfig.log_dir_path,
+            log_dir_path=os.path.join(manage_root, DELConfig.log_dir_path),
             log_file_name=DELConfig.log_file_name,
             backup_count=DELConfig.backup_count,
             log_level=DELConfig.log_level

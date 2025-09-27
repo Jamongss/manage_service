@@ -3,7 +3,7 @@
 
 class CHECKConfig(object):
     logger_name = 'CHECK_SERVICE'
-    log_dir_path = '/log/MindsVOC/MANAGE_SERVICE/check_service'
+    log_dir_path = 'logs/check_service'
     log_file_name = 'check_service.log'
     backup_count = 3
     log_level = 'info'
@@ -13,9 +13,21 @@ class CHECKConfig(object):
     svctl_cmd = "svctl"
     docker_cmd = "docker ps -a --format '{{.Status}}\t{{.Names}}'"
 
+class MonitorConfig(object):
+    logger_name = 'MONITORING_SERVICE'
+    log_dir_path = 'logs/service_monitor'
+    log_file_name = 'service_monitor.log'
+    backup_count = 5
+    log_level = 'info'
+    check_engine_list = ['haproxy2.5']
+    check_system_list = ['crond']
+    check_service_list = ['print_time']
+    svctl_cmd = "engn/svctl"
+    docker_cmd = "docker ps -a --format '{{.Status}}\t{{.Names}}'"
+
 class RestartConfig(object):
     logger_name = 'RESTART_SERVICE'
-    log_dir_path = '/log/MindsVOC/MANAGE_SERVICE/restart'
+    log_dir_path = 'logs/restart'
     log_file_name = 'restart_service.log'
     backup_count = 8
     log_level = 'info'
@@ -23,7 +35,7 @@ class RestartConfig(object):
 
 class DELConfig(object):
     logger_name = 'DELETE_FILE'
-    log_dir_path = '/log/MindsVOC/MANAGE_SERVICE/delete_file'
+    log_dir_path = 'logs/delete_file'
     log_file_name = 'delete_file.log'
     backup_count = 3
     log_level = 'info'
@@ -46,7 +58,7 @@ class DELConfig(object):
 
 class SUBPROCESSConfig(object):
     logger_name = 'SUB_PROCESS'
-    log_dir_path = '/log/MindsVOC/MANAGE_SERVICE/sub_process'
+    log_dir_path = 'logs/sub_process'
     log_file_name = 'sub_process.log'
     backup_count = 3
     log_level = 'info'

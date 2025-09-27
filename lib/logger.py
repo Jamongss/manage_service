@@ -1,9 +1,12 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.Ai"
-__date__ = "creation: 2023-03-03, modification: 0000-00-00"
+__author__ = "Jamongss"
+__date__ = "2023-03-03"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-09-27"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #

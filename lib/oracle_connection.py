@@ -1,9 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.Ai - Jamong"
-__date__ = "creation: 2024-10-31, modification: 2024-11-12"
+__author__ = "Jamongss"
+__date__ = "2024-10-31"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-09-27"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #
@@ -165,3 +168,4 @@ if __name__ == '__main__':
 
     oracle.conn.commit()
     oracle.disconnect()
+

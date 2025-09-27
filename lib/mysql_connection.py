@@ -1,9 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.Ai - Jamong"
-__date__ = "creation: 2024-10-29, modification: 2024-11-12"
+__author__ = "Jamongss"
+__date__ = "2024-10-29"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-09-27"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #
@@ -14,11 +17,6 @@ import pymysql
 import traceback
 from sub_process import SubProcess
 
-###########
-# options #
-###########
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 #########
 # class #
@@ -94,3 +92,4 @@ if __name__ == '__main__':
 
     mysql.conn.commit()
     mysql.disconnect()
+

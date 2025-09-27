@@ -8,6 +8,7 @@ __date__ = "creation: 2023-01-25, modification: 2024-10-29"
 ###########
 # imports #
 ###########
+import os
 import sys
 import traceback
 from cfg.config import RestartConfig
@@ -21,6 +22,11 @@ from lib.elapsed_time import ElapsedTime
 reload(sys)
 sys.setdefaultencoding('utf-8')
 
+###################
+# global variable #
+###################
+manage_root = os.path.dirname(os.path.abspath(__file__))
+
 #########
 # class #
 #########
@@ -29,7 +35,7 @@ class RestartService:
         # Set logger
         self.log = get_timed_rotating_logger(
             logger_name=RestartConfig.logger_name,
-            log_dir_path=RestartConfig.log_dir_path,
+            log_dir_path=os.path.join(manage_root, RestartConfig.log_dir_path),
             log_file_name=RestartConfig.log_file_name,
             backup_count=RestartConfig.backup_count,
             log_level=RestartConfig.log_level
