@@ -10,7 +10,7 @@ class CHECKConfig(object):
     check_engine_list = []
     check_system_list = ['mysql']
     check_service_list = ['stt-proxy']
-    svctl_cmd = "svctl"
+    svctl_cmd = "supervisor-kit/svctl"
     docker_cmd = "docker ps -a --format '{{.Status}}\t{{.Names}}'"
 
 class MonitorConfig(object):
@@ -22,7 +22,7 @@ class MonitorConfig(object):
     check_engine_list = ['haproxy2.5']
     check_system_list = ['crond']
     check_service_list = ['print_time']
-    svctl_cmd = "engn/svctl"
+    svctl_cmd = "supervisor-kit/svctl"
     docker_cmd = "docker ps -a --format '{{.Status}}\t{{.Names}}'"
 
 class RestartConfig(object):

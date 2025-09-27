@@ -21,7 +21,9 @@ from sub_process import SubProcess
 ###################
 # global variable #
 ###################
-manage_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+manage_service_path = os.path.dirname(
+    os.path.dirname(os.path.abspath(__file__)))
+manage_root = os.path.dirname(manage_service_path)
 
 #########
 # class #
