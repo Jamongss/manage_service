@@ -33,16 +33,12 @@ class DELConfig(object):
     # mtn_period = '250'
     target_dict_list = [
                 {
-                 'directory_path': '/log/MindsVOC/MANAGE_SERVICE/delete_file',
-                 'delete_file_date': '180'
+                 'directory_path': '/data/dev_area/jamong/manage_pack/manage_service/logs',
+                 'delete_file_date': '1'
                 }
                 # {
                 #  'directory_path': '/DATA/maum/rec',
                 #  'delete_file_date': '250'
-                # },
-                # {
-                #  'directory_path': '/DATA/stt_log',
-                #  'delete_file_date': '60'
                 # }
     ]
 

@@ -1,9 +1,12 @@
-#!/usr/bin/python
-# -*- coding:utf-8 -*-
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.Ai - Jamong"
-__date__ = "creation: 2024-05-10, modification: 2024-10-29"
+__author__ = "Jamongss"
+__date__ = "2024-05-10"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-10-01"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #
@@ -17,12 +20,6 @@ from datetime import datetime
 from cfg.config import DELConfig
 from lib.elapsed_time import ElapsedTime
 from lib.logger import get_timed_rotating_logger
-
-###########
-# options #
-###########
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 ###################
 # global variable #
@@ -87,37 +84,51 @@ class DeleteFile:
                 target_dir_path = str(target_info_dict.get('directory_path'))
                 if target_dir_path[-1] == '/':
                     target_dir_path = target_dir_path[:-1]
-                delete_file_date = int(target_info_dict.get('delete_file_date'))
+                delete_file_date = int(
+                    target_info_dict.get('delete_file_date'))
                 w_ob = os.walk(target_dir_path)
                 for dir_path, sub_dirs, files in w_ob:
                     if len(files) == 0 and len(sub_dirs) == 0:
                         if dir_path:
                             time_since_creation = (
-                                    datetime.now() - datetime.fromtimestamp(os.path.getctime(dir_path))).days
-                            if dir_path and time_since_creation >= delete_file_date:
+                                    datetime.now() - datetime.fromtimestamp(
+                                        os.path.getctime(dir_path))
+                            ).days
+                            if (
+                                dir_path
+                                and time_since_creation >= delete_file_date
+                            ):
                                 self.log.info('Empty directory')
                                 self.del_garbage(dir_path, 'dir')
                                 self.delete_dir_cnt += 1
                     for file_path in files:
                         target_path = os.path.join(dir_path, file_path)
                         self.time_since_creation = (
-                                    datetime.now() - datetime.fromtimestamp(os.path.getctime(target_path))).days
-                        if target_path and self.time_since_creation >= delete_file_date:
+                                    datetime.now() - datetime.fromtimestamp(
+                                        os.path.getctime(target_path))
+                        ).days
+                        if (
+                            target_path
+                            and self.time_since_creation >= delete_file_date
+                        ):
                             self.del_garbage(target_path, 'file')
                             self.delete_file_cnt += 1
-#                       else:
-#                           logger.info(
-#                               "     >>> time_since_creation: {}\tNot_subject_to_deletion: {}".format(
-#                                   time_since_creation, target_path
-#                               )
-#                           )
+                        else:
+                            self.log.info(
+                                "     >>> time_since_creation: {}\t\
+                                Not_subject_to_deletion: {}".format(
+                                    time_since_creation, target_path
+                                )
+                            )
 
             proc_start_time, required_time = elapsed_time.run()
-            self.log.info("[ E N D ] Start time = {}, The time required = {}".format(proc_start_time, required_time))
+            self.log.info(
+                "[ E N D ] Start time = {}, The time required = {}".format(
+                    proc_start_time, required_time)
+            )
         except Exception:
-            err_str = traceback.format_exc()
-            self.log.error(err_str)
-            sys.exit()
+            self.log.error(traceback.format_exc())
+            sys.exit(1)
 
 
 ########
@@ -126,3 +137,4 @@ class DeleteFile:
 if __name__ == "__main__":
     delete_file = DeleteFile()
     delete_file.run()
+
