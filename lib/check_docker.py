@@ -5,7 +5,7 @@
 __author__ = "Jamongss"
 __date__ = "2024-09-26"
 __last_modified_by__ = "Jamongss"
-__last_modified_date__ = "0000-00-00"
+__last_modified_date__ = "2025-10-01"
 __maintainer__ = "Jamongss"
 
 ###########
@@ -34,46 +34,54 @@ class CheckDocker:
         self.err_cnt = err_cnt
 
     def run(self):
-        self.total_cnt += len(self.check_engine_list)
-        container_list = list()
-        container_dict = dict()
+        if '' in self.check_engine_list:
+            return self.total_cnt, self.check_cnt, self.err_cnt
 
-        self.log.info("{} [ ENGINE LIST ] {}\n".format('<' * 30, '>' * 31))
-        self.log.info('*' * 78)
-        self.log.info('-' * 78)
+        try:
+            self.total_cnt += len(self.check_engine_list)
+            container_list = list()
+            container_dict = dict()
 
-        """
-        Call docker client list option
-        all=False -> docker ps (default)
-        all=True  -> docker ps -a
-        """
-        client = docker.from_env()
-        containers = client.containers.list(all=True)
+            self.log.info("{} [ Docker LIST ] {}".format('<' * 30, '>' * 31))
+            # self.log.info('*' * 78)
+            self.log.info('-' * 78)
 
-        for container in containers:
-            name = container.name
-            # status = container.status   # running exited
-            # More than detailed status(ex: running, exited, created, dead...)
-            detailed_status = container.attrs['State']['Status']
-            container_dict[name] = detailed_status
-            container_list.append(name)
+            """
+            Call docker client list option
+            all=False -> docker ps (default)
+            all=True  -> docker ps -a
+            """
+            client = docker.from_env()
+            containers = client.containers.list(all=True)
 
-            # self.log.info(container_list)
-            # self.log.info(container_dict)
+            for container in containers:
+                name = container.name
+                # status = container.status   # running exited
+                # More than detailed status(ex: running, exited, created, dead...)
+                detailed_status = container.attrs['State']['Status']
+                container_dict[name] = detailed_status
+                container_list.append(name)
 
-        for engine in self.check_engine_list:
-            if engine in container_list:
-                    if container_dict[engine]=='running':
-                        self.log.info(
-                            "{}{}".format(StrPack.RUNNING_STR, engine))
-                        self.check_cnt += 1
-                    else:
-                        self.log.error("{}{}".format(StrPack.ERR_STR, engine))
-                        self.err_cnt += 1
-            else:
-                self.log.error("{}{}".format(StrPack.NOT_EXISTS_STR, engine))
-                self.err_cnt += 1
-        self.log.info('-' * 78)
-        self.log.info("{}\n".format('*' * 78))
+                # self.log.info(container_list)
+                # self.log.info(container_dict)
 
-        return self.total_cnt, self.check_cnt, self.err_cnt
+            for engine in self.check_engine_list:
+                if engine in container_list:
+                        if container_dict[engine]=='running':
+                            self.log.info(
+                                "{}{}".format(StrPack.RUNNING_STR, engine))
+                            self.check_cnt += 1
+                        else:
+                            self.log.error("{}{}".format(StrPack.ERR_STR, engine))
+                            self.err_cnt += 1
+                else:
+                    self.log.error("{}{}".format(StrPack.NOT_EXISTS_STR, engine))
+                    self.err_cnt += 1
+            self.log.info('{}\n'.format('-' * 78))
+            # self.log.info("{}\n".format('*' * 78))
+
+            return self.total_cnt, self.check_cnt, self.err_cnt
+        except Exception:
+            self.log.error(traceback.format_exc())
+            return self.total_cnt, self.check_cnt, self.err_cnt
+

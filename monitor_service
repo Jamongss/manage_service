@@ -18,7 +18,7 @@ from cfg.config import MonitorConfig
 from lib.logger import get_timed_rotating_logger
 from lib.control_svctl import Svctl
 from lib.check_docker import CheckDocker
-from lib.check_systemctl import CheckSystemctl
+from lib.check_process import CheckProcess
 
 
 ###################
@@ -41,9 +41,9 @@ class MonitorService:
 
     def run(self):
         try:
-            total_count = 0  # type: int
-            check_count = 0  # type: int
-            err_count = 0  # type: int
+            total_count = 0     # type: int
+            check_count = 0     # type: int
+            err_count = 0       # type: int
 
             c_svctl = Svctl(
                 self.log,
@@ -63,14 +63,14 @@ class MonitorService:
             )
             total_cnt, check_cnt, err_cnt = c_docker.run()
 
-            c_systemctl = CheckSystemctl(
+            c_process = CheckProcess(
                 self.log,
-                sys_list=MonitorConfig.check_system_list,
+                proc_list=MonitorConfig.check_process_list,
                 total_cnt=total_cnt,
                 check_cnt=check_cnt,
                 err_cnt=err_cnt,
             )
-            total_cnt, check_cnt, err_cnt = c_systemctl.run()
+            total_cnt, check_cnt, err_cnt = c_process.run()
 
             self.log.info('=' * 78)
             self.log.info("대상 서비스 개수 : {}".format(total_cnt))
@@ -79,9 +79,10 @@ class MonitorService:
             self.log.info('=' * 78)
         except Exception:
             self.log.error(traceback.format_exc())
-            pass
+            sys.exit(1)
 
 
 if __name__ == "__main__":
     monitor_service = MonitorService()
     monitor_service.run()
+

@@ -11,6 +11,7 @@ __date__ = "creation: 2024-09-26, modification: 2024-11-18"
 import os
 import sys
 import traceback
+import psutil
 from cfg.config import CHECKConfig
 from lib.logger import get_timed_rotating_logger
 from lib.control_svctl import Svctl
@@ -69,14 +70,30 @@ class CheckService:
             )
             total_cnt, check_cnt, err_cnt = c_docker.run()
 
-            c_systemctl = CheckSystemctl(
-                self.log,
-                sys_list=check_system_list,
-                total_cnt=total_cnt,
-                check_cnt=check_cnt,
-                err_cnt=err_cnt,
-            )
-            total_cnt, check_cnt, err_cnt = c_systemctl.run()
+#            c_systemctl = CheckSystemctl(
+#                self.log,
+#                sys_list=check_system_list,
+#                total_cnt=total_cnt,
+#                check_cnt=check_cnt,
+#                err_cnt=err_cnt,
+#            )
+#            total_cnt, check_cnt, err_cnt = c_systemctl.run()
+
+            try:
+                for  
+                    for proc in psutil.process_iter(['pid', 'name', 'status']):
+                        if service_name.lower() in proc.info['name'].lower():
+                            return {
+                                'running': True,
+                                'pid': proc.info['pid'],
+                                'status': proc.info['status'],
+                                'name': proc.info['name']
+                            }
+                        else:
+                            return {'running': False}
+                except Exception as e:
+                return {'error': str(e)}
+
 
             self.log.info('*' * 78)
             self.log.info('-' * 78)
@@ -85,7 +102,10 @@ class CheckService:
             self.log.info("비정상 실행 중인 서비스 개수 : {}".format(err_cnt))
             self.log.info('-' * 78)
             self.log.info('*' * 78)
-        except Exception:
+
+
+
+      except Exception:
             err_str = traceback.format_exc()
             self.log.error(err_str)
 

@@ -5,7 +5,7 @@
 __author__ = "Jamongss"
 __date__ = "2024-10-13"
 __last_modified_by__ = "Jamongss"
-__last_modified_date__ = "2025-09-27"
+__last_modified_date__ = "2025-10-01"
 __maintainer__ = "Jamongss"
 
 ###########
@@ -19,12 +19,6 @@ import subprocess
 sys.path.append('../')
 from cfg.config import SUBPROCESSConfig
 from logger import get_timed_rotating_logger
-
-###########
-# options #
-###########
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 ###################
 # global variable #
@@ -63,6 +57,28 @@ class SubProcess:
             log_level=SUBPROCESSConfig.log_level
         )
         return log
+
+    def sub_process_run(self):
+        try:
+            # subprocess.run을 사용하여 process 시작 및 timeout 설정
+            result = subprocess.run(
+                self.cmd, shell=True, text=True,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.PIPE,
+                timeout=self.timeout
+            )
+            # 결과 반환 (stdout, stderr)
+            # self.log.info(f'[SubProcess] stdout : {result.stdout}')
+            # self.log.info(f'[SubProcess] stderr : {result.stderr}')
+            return result.stdout, result.stderr
+        except subprocess.TimeoutExpired as e:
+            self.log.error(
+                "Command '{}' timed out after {} seconds".format(
+                    self.cmd, e.timeout
+                )
+            )
+            self.log.error(traceback.format_exc())
+            return None, None
 
     def sub_process_popen(self):
         try:

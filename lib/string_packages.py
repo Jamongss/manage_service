@@ -10,5 +10,5 @@ __maintainer__ = "Jamongss"
 
 class StrPack(object):
     RUNNING_STR = "\t[  RUNNING  ]          ----->          "
-    ERR_STR = "[!! ERROR !!]          ----->          "
+    ERR_STR = "\t[!! ERROR !!]          ----->          "
     NOT_EXISTS_STR = "\t[!! ERROR !!]        Not exists        "

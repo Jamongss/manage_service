@@ -15,8 +15,10 @@ import os
 import re
 import sys
 sys.path.append('../')
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from cfg.config import MonitorConfig
 from sub_process import SubProcess
+from string_packages import StrPack
 
 ###################
 # global variable #
@@ -41,74 +43,86 @@ class Svctl:
         if '' in self.svc_list:
             return self.total_cnt, self.check_cnt, self.err_cnt
 
-        self.total_cnt += len(self.svc_list)
-        running_status = ['RUNNING']
-        service_list = list()
-        service_dict = dict()
+        try:
+            self.total_cnt += len(self.svc_list)
+            running_status = ['RUNNING']
+            service_list = list()
+            service_dict = dict()
 
-        cmd = "{} status".format(
-            os.path.join(manage_root, MonitorConfig.svctl_cmd))
-        timeout = 30
-
-        self.log.info("cmd: {}".format(cmd))
-
-        sub_proc = SubProcess(cmd, timeout)
-        std_out, std_err = sub_proc.sub_process_popen()
-
-        if std_out is None and std_err is None:
-            raise RuntimeError("ERROR [{}]".format(cmd))
-
-        if len(std_out) > 0:
-            for result in std_out.strip().split('\n'):
-                result = re.sub(r'\s+', ' ', result.strip())
-                if len(result.strip().split(' ')) >= 1:
-                    # result.split(' ') = [
-                    #     'stt-proxy', 'RUGGING', 'pid', '10487,',
-                    #     'uptime', '37', 'days', '2:56:18'
-                    # ]
-                    if result.split(' ')[0] in self.svc_list:
-                        service_name = result.split(' ')[0]
-                        service_list.append(service_name)
-                        service_status = result.split(' ')[1]
-                        service_dict[service_name] = service_status
-
-        for target in self.svc_list:
-            if target in service_list:
-                for status_code in running_status:
-                    if status_code in service_dict[target]:
-                        self.log.info("RUNNING [{}]".format(target))
-                        self.check_cnt += 1
-                        break
-                    elif status_code not in service_dict[target]:
-                        self.log.error("RUNNING [{}]".format(target))
-                        self.err_cnt += 1
-                        break
-            else:
-                self.log.error("ERROR [{}]".format(target))
-                self.err_cnt += 1
-
-        return self.total_cnt, self.check_cnt, self.err_cnt
-
-    def control(self, log, action):
-        self.log.info("{} service ... {}".format(
-            action.upper(), self.svc_list))
-        self.log.info('*' * 100)
-
-        for service in self.svc_list:
-            cmd = "{} {} {}".format(MonitorConfig.svctl_cmd, action, service)
+            cmd = "{} status".format(
+                os.path.join(manage_root, MonitorConfig.svctl_cmd))
             timeout = 30
 
-            self.log.info("\t--> Command: {}".format(cmd))
+            self.log.info("supervisor cmd: {}\n".format(cmd))
+
+            self.log.info("{} [ SVCTL LIST ] {}".format('<' * 30, '>' * 30))
+            # self.log.info('*' * 78)
+            self.log.info('-' * 78)
 
             sub_proc = SubProcess(cmd, timeout)
+            std_out, std_err = sub_proc.sub_process_run()
 
             if std_out is None and std_err is None:
                 raise RuntimeError("ERROR [{}]".format(cmd))
 
-            if len(std_out.strip()) > 0:
-                self.log.info("\t--> Standard out:")
-                self.log.info(std_out.strip())
-            if len(std_err.strip()) > 0:
-                self.log.info("\t--> Standard err:")
-                self.log.info(std_err.strip())
+            if len(std_out) > 0:
+                for result in std_out.strip().split('\n'):
+                    result = re.sub(r'\s+', ' ', result.strip())
+                    if len(result.strip().split(' ')) >= 1:
+                        # result.split(' ') = [
+                        #     'stt-proxy', 'RUGGING', 'pid', '10487,',
+                        #     'uptime', '37', 'days', '2:56:18'
+                        # ]
+                        if result.split(' ')[0] in self.svc_list:
+                            service_name = result.split(' ')[0]
+                            service_list.append(service_name)
+                            service_status = result.split(' ')[1]
+                            service_dict[service_name] = service_status
+
+            for target in self.svc_list:
+                if target in service_list:
+                    for status_code in running_status:
+                        if status_code in service_dict[target]:
+                            self.log.info(
+                                "{}{}".format(StrPack.RUNNING_STR, target))
+                            self.check_cnt += 1
+                            break
+                        elif status_code not in service_dict[target]:
+                            self.log.error("{}{}".format(StrPack.ERR_STR, target))
+                            self.err_cnt += 1
+                            break
+                else:
+                    self.log.error("{}{}".format(StrPack.NOT_EXISTS_STR, target))
+                    self.err_cnt += 1
+
+            self.log.info("{}\n".format('-' * 78))
+            # self.log.info("{}\n".format('*' * 78))
+
+            return self.total_cnt, self.check_cnt, self.err_cnt
+        except Exception:
+            self.log.error(traceback.format_exc())
+            return self.total_cnt, self.check_cnt, self.err_cnt
+
+        def control(self, log, action):
+            self.log.info("{} service ... {}".format(
+                action.upper(), self.svc_list))
+            self.log.info('*' * 100)
+
+            for service in self.svc_list:
+                cmd = "{} {} {}".format(MonitorConfig.svctl_cmd, action, service)
+                timeout = 30
+
+                self.log.info("\t--> Command: {}".format(cmd))
+
+                sub_proc = SubProcess(cmd, timeout)
+
+                if std_out is None and std_err is None:
+                    raise RuntimeError("ERROR [{}]".format(cmd))
+
+                if len(std_out.strip()) > 0:
+                    self.log.info("\t--> Standard out:")
+                    self.log.info(std_out.strip())
+                if len(std_err.strip()) > 0:
+                    self.log.info("\t--> Standard err:")
+                    self.log.info(std_err.strip())
 
