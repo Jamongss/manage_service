@@ -1,16 +1,4 @@
-2025-10-01 21:02:13.156 - INFO[71] - [S T A R T] Delete file process ...
-2025-10-01 21:02:13.157 - INFO[76] - ======================================================================================================================================================
-2025-10-01 21:02:13.157 - INFO[77] - retention_period : 1	target_path : /data/dev_area/jamong/manage_pack/manage_service/logs
-2025-10-01 21:02:13.157 - INFO[51] -      >>> time_since_creation: 4	delete_file: /data/dev_area/jamong/manage_pack/manage_service/logs/sub_process/sub_process.log
-2025-10-01 21:02:13.160 - ERROR[131] - Traceback (most recent call last):
-  File "/DATA/dev_area/jamong/manage_pack/manage_service/delete_file.py", line 117, in run
-    logger.info(
-    ^^^^^^
-NameError: name 'logger' is not defined
-
-2025-10-01 21:02:54.781 - INFO[71] - [S T A R T] Delete file process ...
-2025-10-01 21:02:54.782 - INFO[76] - ======================================================================================================================================================
-2025-10-01 21:02:54.782 - INFO[77] - retention_period : 1	target_path : /data/dev_area/jamong/manage_pack/manage_service/logs
-2025-10-01 21:02:54.782 - INFO[117] -      >>> time_since_creation: 0	                                Not_subject_to_deletion: /data/dev_area/jamong/manage_pack/manage_service/logs/delete_file/delete_file.log
-2025-10-01 21:02:54.782 - INFO[117] -      >>> time_since_creation: 0	                                Not_subject_to_deletion: /data/dev_area/jamong/manage_pack/manage_service/logs/monitor_service/monitor_service.log
-2025-10-01 21:02:54.782 - INFO[125] - [ E N D ] Start time = 2025-10-01 21:02:54.781930, The time required = 0:00:00.000455
+2025-10-02 01:01:26.836 - INFO[71] - [S T A R T] Delete file process ...
+2025-10-02 01:01:26.836 - INFO[76] - ======================================================================================================================================================
+2025-10-02 01:01:26.836 - INFO[77] - retention_period : 1	target_path : /data/dev_area/jamong/manage_pack/manage_service/logs
+2025-10-02 01:01:26.836 - INFO[125] - [ E N D ] Start time = 2025-10-02 01:01:26.836415, The time required = 0:00:00.000376

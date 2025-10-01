@@ -614,3 +614,141 @@
 2025-10-01 21:46:14.644 - INFO[77] - 정상 실행 중인 서비스 개수 : 3
 2025-10-01 21:46:14.644 - INFO[78] - 비정상 실행 중인 서비스 개수 : 1
 2025-10-01 21:46:14.644 - INFO[79] - ==============================================================================
+2025-10-01 22:31:24.951 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-01 22:31:24.951 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-01 22:31:24.951 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-01 22:31:24.952 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-01 22:31:24.952 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-01 22:31:24.952 - INFO[45] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-01 22:31:24.952 - INFO[47] - ------------------------------------------------------------------------------
+2025-10-01 22:31:24.960 - ERROR[81] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+FileNotFoundError: [Errno 2] No such file or directory
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 54, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', FileNotFoundError(2, 'No such file or directory'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+                                    ^^^^^^^^^^^^^^
+  File "/home/jamong/manage_service/lib/check_docker.py", line 85, in run
+    self.log.error(traceback.format_exc())
+                   ^^^^^^^^^
+NameError: name 'traceback' is not defined. Did you forget to import 'traceback'
+
+2025-10-01 23:36:29.947 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-01 23:36:29.947 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-01 23:36:29.947 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-01 23:36:29.949 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-01 23:36:29.949 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-01 23:36:29.949 - INFO[45] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-01 23:36:29.949 - INFO[47] - ------------------------------------------------------------------------------
+2025-10-01 23:36:29.955 - ERROR[78] - 	[!! ERROR !!]        Not exists        haproxy2.5
+2025-10-01 23:36:29.955 - ERROR[78] - 	[!! ERROR !!]        Not exists        former-jamong
+2025-10-01 23:36:29.955 - INFO[80] - ------------------------------------------------------------------------------
+
+2025-10-01 23:36:29.955 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-01 23:36:29.956 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-01 23:36:29.956 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-01 23:36:29.956 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-01 23:36:29.956 - INFO[75] - ==============================================================================
+2025-10-01 23:36:29.956 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-01 23:36:29.957 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-01 23:36:29.957 - INFO[78] - 비정상 실행 중인 서비스 개수 : 4
+2025-10-01 23:36:29.957 - INFO[79] - ==============================================================================

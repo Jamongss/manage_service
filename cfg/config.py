@@ -34,7 +34,7 @@ class DELConfig(object):
     target_dict_list = [
                 {
                  'directory_path': '/data/dev_area/jamong/manage_pack/manage_service/logs',
-                 'delete_file_date': '1'
+                 'delete_file_date': '180'
                 }
                 # {
                 #  'directory_path': '/DATA/maum/rec',
