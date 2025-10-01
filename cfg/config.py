@@ -21,7 +21,7 @@ class RestartConfig(object):
     log_file_name = 'restart_service.log'
     backup_count = 8
     log_level = 'info'
-    service_list = ['col_rest_api']
+    service_list = ['print_time']
 
 class DELConfig(object):
     logger_name = 'DELETE_FILE'

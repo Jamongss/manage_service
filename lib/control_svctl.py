@@ -103,26 +103,30 @@ class Svctl:
             self.log.error(traceback.format_exc())
             return self.total_cnt, self.check_cnt, self.err_cnt
 
-        def control(self, log, action):
-            self.log.info("{} service ... {}".format(
-                action.upper(), self.svc_list))
-            self.log.info('*' * 100)
+    def control(self, action):
+        self.log.info("{} service ... {}".format(
+            action.upper(), self.svc_list))
+        self.log.info('*' * 100)
 
-            for service in self.svc_list:
-                cmd = "{} {} {}".format(MonitorConfig.svctl_cmd, action, service)
-                timeout = 30
+        svctl_cmd = "{}".format(
+            os.path.join(manage_root, MonitorConfig.svctl_cmd))
 
-                self.log.info("\t--> Command: {}".format(cmd))
+        for service in self.svc_list:
+            action_cmd = "{} {} {}".format(svctl_cmd, action, service)
+            timeout = 30
 
-                sub_proc = SubProcess(cmd, timeout)
+            self.log.info("\t--> Command: {}".format(action_cmd))
 
-                if std_out is None and std_err is None:
-                    raise RuntimeError("ERROR [{}]".format(cmd))
+            sub_proc = SubProcess(action_cmd, timeout)
+            std_out, std_err = sub_proc.sub_process_run()
 
-                if len(std_out.strip()) > 0:
-                    self.log.info("\t--> Standard out:")
-                    self.log.info(std_out.strip())
-                if len(std_err.strip()) > 0:
-                    self.log.info("\t--> Standard err:")
-                    self.log.info(std_err.strip())
+            if std_out is None and std_err is None:
+                raise RuntimeError("ERROR [{}]".format(action_cmd))
+
+            if len(std_out.strip()) > 0:
+                self.log.info("\t--> Standard out:")
+                self.log.info(std_out.strip())
+            if len(std_err.strip()) > 0:
+                self.log.info("\t--> Standard err:")
+                self.log.info(std_err.strip())
 

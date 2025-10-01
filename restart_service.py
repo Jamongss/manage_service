@@ -1,9 +1,12 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 """program"""
-__author__ = "Maum.Ai - Jamong"
-__date__ = "creation: 2023-01-25, modification: 2024-10-29"
+__author__ = "Jamongss"
+__date__ = "2023-01-25"
+__last_modified_by__ = "Jamongss"
+__last_modified_date__ = "2025-10-01"
+__maintainer__ = "Jamongss"
 
 ###########
 # imports #
@@ -15,12 +18,6 @@ from cfg.config import RestartConfig
 from lib.logger import get_timed_rotating_logger
 from lib.control_svctl import Svctl
 from lib.elapsed_time import ElapsedTime
-
-###########
-# options #
-###########
-reload(sys)
-sys.setdefaultencoding('utf-8')
 
 ###################
 # global variable #
@@ -56,15 +53,18 @@ class RestartService:
         # program_list = ['col_rest_api']
 
         try:
-            c_svctl = Svctl(program_list)
-            c_svctl.control(self.log, action='stop')
-            c_svctl.control(self.log, action='start')
+            c_svctl = Svctl(self.log, program_list)
+            c_svctl.control(action='stop')
+            c_svctl.control(action='start')
         except Exception:
             exc_info = traceback.format_exc()
             self.log.error(exc_info)
         finally:
             proc_start_time, required_time = elapsed_time.run()
-            self.log.info("[E N D] Start time = {}, The time required = {}".format(proc_start_time, required_time))
+            self.log.info(
+                "[E N D] Start time = {}, The time required = {}".format(
+                    proc_start_time, required_time)
+            )
 
 
 ########
@@ -73,3 +73,4 @@ class RestartService:
 if __name__ == '__main__':
     restart_service = RestartService()
     restart_service.run()
+
