@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/env python3
 # -*- coding:utf-8 -*-
 
 class MonitorConfig(object):
@@ -29,8 +29,6 @@ class DELConfig(object):
     log_file_name = 'delete_file.log'
     backup_count = 3
     log_level = 'info'
-    # target_dir = ['/dlenc/log/MindsVOC/MANAGE_SERVICE/stt']
-    # mtn_period = '250'
     target_dict_list = [
                 {
                  'directory_path': '/data/dev_area/jamong/manage_pack/manage_service/logs',
@@ -49,18 +47,6 @@ class SUBPROCESSConfig(object):
     backup_count = 3
     log_level = 'info'
 
-# class ORAConfig(object):
-#     db_type = 'oracle'
-#     host = '10.151.3.174'
-#     host_list = ['10.151.3.174']
-#     user = 'STTUSR'
-#     pd = 'aa12345!'
-#     port = 1523
-#     # service_name = 'ORCL'
-#     sid = 'DSTTODBS'
-#     failover = True
-#     reconnect_interval = 10
-
 class ORAConfig(object):
     db_type = 'oracle'
     # host = '0.0.0.0'
@@ -76,7 +62,7 @@ class ORAConfig(object):
 
 class DeleteDbConfig(object):
     logger_name = 'DELETE_DB'
-    log_dir_path = '/log/MindsVOC/MANAGE_SERVICE/delete_db'
+    log_dir_path = 'logs/delete_db'
     log_file_name = 'delete_db.log'
     backup_count = 5
     log_level = 'info'
