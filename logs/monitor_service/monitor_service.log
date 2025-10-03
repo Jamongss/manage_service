@@ -368,3 +368,1008 @@ Traceback (most recent call last):
                    ^^^^^^^^^
 NameError: name 'traceback' is not defined. Did you forget to import 'traceback'
 
+2025-10-04 02:28:06.649 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:28:06.649 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:06.650 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:28:06.651 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:28:06.651 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:28:06.651 - INFO[45] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:06.651 - INFO[47] - ------------------------------------------------------------------------------
+2025-10-04 02:28:06.658 - ERROR[81] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 54, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+                                    ^^^^^^^^^^^^^^
+  File "/home/jamong/manage_service/lib/check_docker.py", line 84, in run
+    except requests.exceptions.ConnectionError:
+           ^^^^^^^^
+NameError: name 'requests' is not defined
+
+2025-10-04 02:28:20.332 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:28:20.332 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:20.332 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:28:20.333 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:28:20.334 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:28:20.334 - INFO[46] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:20.334 - INFO[48] - ------------------------------------------------------------------------------
+2025-10-04 02:28:20.340 - ERROR[81] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 55, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+                                    ^^^^^^^^^^^^^^
+  File "/home/jamong/manage_service/lib/check_docker.py", line 88, in run
+    except APIError as e:
+           ^^^^^^^^
+NameError: name 'APIError' is not defined. Did you mean: 'EOFError'?
+
+2025-10-04 02:28:37.145 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:28:37.146 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:37.146 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:28:37.147 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:28:37.147 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:28:37.148 - INFO[46] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:37.148 - INFO[48] - ------------------------------------------------------------------------------
+2025-10-04 02:28:37.155 - ERROR[81] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 55, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+                                    ^^^^^^^^^^^^^^
+  File "/home/jamong/manage_service/lib/check_docker.py", line 89, in run
+    self.log.error(traceback.format_exc())
+                   ^^^^^^^^^
+NameError: name 'traceback' is not defined. Did you forget to import 'traceback'
+
+2025-10-04 02:28:51.938 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:28:51.938 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:51.938 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:28:51.940 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:28:51.940 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:28:51.940 - INFO[47] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:51.940 - INFO[49] - ------------------------------------------------------------------------------
+2025-10-04 02:28:51.945 - ERROR[90] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 56, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+2025-10-04 02:28:51.945 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:28:51.946 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:28:51.949 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:28:51.950 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:28:51.950 - INFO[75] - ==============================================================================
+2025-10-04 02:28:51.950 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:28:51.950 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:28:51.950 - INFO[78] - 비정상 실행 중인 서비스 개수 : 2
+2025-10-04 02:28:51.950 - INFO[79] - ==============================================================================
+2025-10-04 02:29:06.906 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:29:06.906 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:29:06.906 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:29:06.908 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:29:06.908 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:29:06.908 - INFO[47] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:29:06.908 - INFO[49] - ------------------------------------------------------------------------------
+2025-10-04 02:29:06.913 - ERROR[89] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 56, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+2025-10-04 02:29:06.913 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:29:06.913 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:29:06.916 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:29:06.916 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:29:06.916 - INFO[75] - ==============================================================================
+2025-10-04 02:29:06.916 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:29:06.916 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:29:06.916 - INFO[78] - 비정상 실행 중인 서비스 개수 : 2
+2025-10-04 02:29:06.916 - INFO[79] - ==============================================================================
+2025-10-04 02:30:10.828 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:30:10.828 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:30:10.829 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:30:10.830 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:30:10.830 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:30:10.830 - INFO[47] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:30:10.830 - INFO[49] - ------------------------------------------------------------------------------
+2025-10-04 02:30:10.838 - ERROR[81] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 56, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+                                    ^^^^^^^^^^^^^^
+  File "/home/jamong/manage_service/lib/check_docker.py", line 88, in run
+    except DockerException as e:
+           ^^^^^^^^^^^^^^^
+NameError: name 'DockerException' is not defined. Did you mean: 'BaseException'?
+
+2025-10-04 02:31:13.641 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:31:13.642 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:31:13.642 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:31:13.644 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:31:13.644 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:31:13.644 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:31:13.644 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:31:13.646 - ERROR[90] - 기타 Docker 예외 발생: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:31:13.648 - ERROR[81] - Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: cannot unpack non-iterable NoneType object
+
+2025-10-04 02:31:47.993 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:31:47.993 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:31:47.993 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:31:47.995 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:31:47.995 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:31:47.995 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:31:47.995 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:31:47.996 - ERROR[88] - 기타 Docker 예외 발생: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:31:47.996 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:31:47.996 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:31:48.000 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:31:48.000 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:31:48.000 - INFO[75] - ==============================================================================
+2025-10-04 02:31:48.000 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:31:48.000 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:31:48.000 - INFO[78] - 비정상 실행 중인 서비스 개수 : 2
+2025-10-04 02:31:48.000 - INFO[79] - ==============================================================================
+2025-10-04 02:32:05.887 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:32:05.887 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:32:05.887 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:32:05.889 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:32:05.889 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:32:05.889 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:32:05.889 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:32:05.890 - ERROR[88] - 기타 Docker 예외 발생: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:32:05.890 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:32:05.890 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:32:05.894 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:32:05.894 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:32:05.894 - INFO[75] - ==============================================================================
+2025-10-04 02:32:05.894 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:32:05.894 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:32:05.894 - INFO[78] - 비정상 실행 중인 서비스 개수 : 2
+2025-10-04 02:32:05.894 - INFO[79] - ==============================================================================
+2025-10-04 02:33:01.192 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:33:01.193 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:01.193 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:33:01.194 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:33:01.194 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:33:01.194 - INFO[47] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:01.194 - INFO[49] - ------------------------------------------------------------------------------
+2025-10-04 02:33:01.195 - ERROR[85] - Docker 예외 발생: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:33:01.203 - ERROR[86] - Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+ConnectionRefusedError: [Errno 111] Connection refused
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 486, in send
+    resp = conn.urlopen(
+           ^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 845, in urlopen
+    retries = retries.increment(
+              ^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/retry.py", line 472, in increment
+    raise reraise(type(error), error, _stacktrace)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/util/util.py", line 38, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 791, in urlopen
+    response = self._make_request(
+               ^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/urllib3/connectionpool.py", line 497, in _make_request
+    conn.request(
+  File "/usr/lib/python3/dist-packages/urllib3/connection.py", line 395, in request
+    self.endheaders()
+  File "/usr/lib/python3.12/http/client.py", line 1331, in endheaders
+    self._send_output(message_body, encode_chunked=encode_chunked)
+  File "/usr/lib/python3.12/http/client.py", line 1091, in _send_output
+    self.send(msg)
+  File "/usr/lib/python3.12/http/client.py", line 1035, in send
+    self.connect()
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/transport/unixconn.py", line 26, in connect
+    sock.connect(self.unix_socket)
+urllib3.exceptions.ProtocolError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 223, in _retrieve_server_version
+    return self.version(api_version=False)["ApiVersion"]
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/daemon.py", line 181, in version
+    return self._result(self._get(url), json=True)
+                        ^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/utils/decorators.py", line 44, in inner
+    return f(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 246, in _get
+    return self.get(url, **self._set_request_timeout(kwargs))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 602, in get
+    return self.request("GET", url, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3/dist-packages/requests/adapters.py", line 501, in send
+    raise ConnectionError(err, request=request)
+requests.exceptions.ConnectionError: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/jamong/manage_service/lib/check_docker.py", line 56, in run
+    client = docker.from_env()
+             ^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 94, in from_env
+    return cls(
+           ^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/client.py", line 45, in __init__
+    self.api = APIClient(*args, **kwargs)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 207, in __init__
+    self._version = self._retrieve_server_version()
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/jamong/.local/lib/python3.12/site-packages/docker/api/client.py", line 230, in _retrieve_server_version
+    raise DockerException(
+docker.errors.DockerException: Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+
+2025-10-04 02:33:01.203 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:01.204 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:33:01.207 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:33:01.207 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:33:01.207 - INFO[75] - ==============================================================================
+2025-10-04 02:33:01.207 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:33:01.207 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:33:01.207 - INFO[78] - 비정상 실행 중인 서비스 개수 : 2
+2025-10-04 02:33:01.207 - INFO[79] - ==============================================================================
+2025-10-04 02:33:12.071 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:33:12.071 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:12.071 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:33:12.072 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:33:12.072 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:33:12.072 - INFO[47] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:12.072 - INFO[49] - ------------------------------------------------------------------------------
+2025-10-04 02:33:12.073 - ERROR[85] - Docker 예외 발생
+->Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:33:12.073 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:12.074 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:33:12.077 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:33:12.077 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:33:12.077 - INFO[75] - ==============================================================================
+2025-10-04 02:33:12.077 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:33:12.077 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:33:12.077 - INFO[78] - 비정상 실행 중인 서비스 개수 : 2
+2025-10-04 02:33:12.077 - INFO[79] - ==============================================================================
+2025-10-04 02:33:19.708 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:33:19.708 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:19.709 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:33:19.710 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:33:19.710 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:33:19.710 - INFO[47] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:19.710 - INFO[49] - ------------------------------------------------------------------------------
+2025-10-04 02:33:19.711 - ERROR[85] - Docker 예외 발생
+	-> Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:33:19.712 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:33:19.712 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:33:19.715 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:33:19.715 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:33:19.715 - INFO[75] - ==============================================================================
+2025-10-04 02:33:19.715 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:33:19.715 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:33:19.715 - INFO[78] - 비정상 실행 중인 서비스 개수 : 2
+2025-10-04 02:33:19.715 - INFO[79] - ==============================================================================
+2025-10-04 02:39:51.363 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:39:51.364 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:39:51.364 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:39:51.365 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:39:51.365 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:39:51.365 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:39:51.365 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:39:51.366 - ERROR[87] - Docker 예외 발생
+	-> Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:39:51.369 - ERROR[81] - Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+                                    ^^^^^^^^^^^^^^
+  File "/home/jamong/manage_service/lib/check_docker.py", line 91, in run
+    if self.total_cnt != self.check_cnt + self.error_cnt:
+                                          ^^^^^^^^^^^^^^
+AttributeError: 'CheckDocker' object has no attribute 'error_cnt'. Did you mean: 'err_cnt'?
+
+2025-10-04 02:40:10.287 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:40:10.287 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:10.287 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:40:10.289 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:40:10.289 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:40:10.289 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:10.289 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:40:10.290 - ERROR[87] - Docker 예외 발생
+	-> Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:40:10.292 - ERROR[81] - Traceback (most recent call last):
+  File "/home/jamong/manage_service/./monitor_service", line 64, in run
+    total_cnt, check_cnt, err_cnt = c_docker.run()
+                                    ^^^^^^^^^^^^^^
+  File "/home/jamong/manage_service/lib/check_docker.py", line 92, in run
+    self.err_cnt = self.err_cnt + cnt
+                                  ^^^
+NameError: name 'cnt' is not defined. Did you mean: 'self.cnt'?
+
+2025-10-04 02:40:18.948 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:40:18.948 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:18.948 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:40:18.950 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:40:18.950 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:40:18.950 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:18.950 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:40:18.951 - ERROR[87] - Docker 예외 발생
+	-> Error while fetching server API version: ('Connection aborted.', ConnectionRefusedError(111, 'Connection refused'))
+2025-10-04 02:40:18.951 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:18.951 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:40:18.955 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:40:18.955 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:40:18.955 - INFO[75] - ==============================================================================
+2025-10-04 02:40:18.955 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:40:18.956 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:40:18.956 - INFO[78] - 비정상 실행 중인 서비스 개수 : 4
+2025-10-04 02:40:18.956 - INFO[79] - ==============================================================================
+2025-10-04 02:40:45.523 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:40:45.524 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:45.524 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:40:45.525 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:40:45.525 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:40:45.525 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:45.525 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:40:45.546 - ERROR[81] - 	[!! ERROR !!]        Not exists        haproxy2.5
+2025-10-04 02:40:45.546 - ERROR[81] - 	[!! ERROR !!]        Not exists        former-jamong
+2025-10-04 02:40:45.546 - INFO[84] - ------------------------------------------------------------------------------
+
+2025-10-04 02:40:45.546 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:40:45.546 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:40:45.550 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:40:45.551 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:40:45.551 - INFO[75] - ==============================================================================
+2025-10-04 02:40:45.551 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:40:45.551 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:40:45.551 - INFO[78] - 비정상 실행 중인 서비스 개수 : 4
+2025-10-04 02:40:45.551 - INFO[79] - ==============================================================================
+2025-10-04 02:47:53.799 - INFO[56] - supervisor cmd: /home/jamong/supervisor-kit/svctl status
+
+2025-10-04 02:47:53.800 - INFO[58] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ SVCTL LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:47:53.800 - INFO[60] - ------------------------------------------------------------------------------
+2025-10-04 02:47:53.801 - ERROR[95] - 	[!! ERROR !!]        Not exists        print_time
+2025-10-04 02:47:53.801 - INFO[98] - ------------------------------------------------------------------------------
+
+2025-10-04 02:47:53.802 - INFO[48] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ Docker LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:47:53.802 - INFO[50] - ------------------------------------------------------------------------------
+2025-10-04 02:47:53.838 - ERROR[81] - 	[!! ERROR !!]        Not exists        haproxy2.5
+2025-10-04 02:47:53.838 - ERROR[81] - 	[!! ERROR !!]        Not exists        former-jamong
+2025-10-04 02:47:53.838 - INFO[84] - ------------------------------------------------------------------------------
+
+2025-10-04 02:47:53.838 - INFO[39] - <<<<<<<<<<<<<<<<<<<<<<<<<<<<<< [ PROCESS LIST ] >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+2025-10-04 02:47:53.838 - INFO[42] - ------------------------------------------------------------------------------
+2025-10-04 02:47:53.842 - ERROR[73] - 	[!! ERROR !!]        Not exists        sshd
+2025-10-04 02:47:53.842 - INFO[78] - ------------------------------------------------------------------------------
+2025-10-04 02:47:53.842 - INFO[75] - ==============================================================================
+2025-10-04 02:47:53.842 - INFO[76] - 대상 서비스 개수 : 4
+2025-10-04 02:47:53.842 - INFO[77] - 정상 실행 중인 서비스 개수 : 0
+2025-10-04 02:47:53.843 - INFO[78] - 비정상 실행 중인 서비스 개수 : 4
+2025-10-04 02:47:53.843 - INFO[79] - ==============================================================================

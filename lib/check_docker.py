@@ -14,6 +14,8 @@ __maintainer__ = "Jamongss"
 import os
 import sys
 import docker
+import traceback
+from docker.errors import DockerException
 from string_packages import StrPack
 
 #########
@@ -32,6 +34,7 @@ class CheckDocker:
         self.total_cnt = total_cnt
         self.check_cnt = check_cnt
         self.err_cnt = err_cnt
+        self.cnt = len(self.check_engine_list)
 
     def run(self):
         if '' in self.check_engine_list:
@@ -77,11 +80,16 @@ class CheckDocker:
                 else:
                     self.log.error("{}{}".format(StrPack.NOT_EXISTS_STR, engine))
                     self.err_cnt += 1
+                self.cnt -= 1
             self.log.info('{}\n'.format('-' * 78))
             # self.log.info("{}\n".format('*' * 78))
-
-            return self.total_cnt, self.check_cnt, self.err_cnt
+        except DockerException as e:
+            self.log.error("Docker 예외 발생\n\t-> {}".format(e))
         except Exception:
             self.log.error(traceback.format_exc())
+        finally:
+            if self.total_cnt != self.check_cnt + self.err_cnt:
+                self.err_cnt = self.err_cnt + self.cnt
             return self.total_cnt, self.check_cnt, self.err_cnt
+
 
