@@ -3,8 +3,9 @@
 
 set -e
 
-# 경로 설정
+# .proto file path
 INCLUDE_DIR="/home/jamong/manage_service/lib"
+# pb2 file path
 OUTPUT_DIR="/home/jamong/manage_service/lib"
 
 echo "=== maum 패키지만 빌드 ==="
