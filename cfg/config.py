@@ -8,7 +8,7 @@ class MonitorConfig(object):
     backup_count = 5
     log_level = 'info'
     check_engine_list = [
-        'haproxy2.5', 'former-jamong'
+        'former-jamong'
     ]
     check_process_list = ['sshd']
     check_service_list = ['print_time']

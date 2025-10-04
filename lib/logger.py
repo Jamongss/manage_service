@@ -35,12 +35,16 @@ class ColorFormatter(logging.Formatter):
         # WARNING -> WARN
         if record.levelname == 'WARNING':
             record.levelname = 'WARN'
+        if record.levelname == 'CRITICAL':
+            record.levelname = 'CRIT'
 
         msg = logging.Formatter.format(self, record)
         color = LogColors.COLORS.get(record.levelname, "")
 
         if record.levelname == 'WARN':
             color = LogColors.COLORS.get('WARNING', "")
+        if record.levelname == 'CRIT':
+            color = LogColors.COLORS.get('CRITICAL', "")
 
         return "{color}{msg}{reset}".format(
             color=color,

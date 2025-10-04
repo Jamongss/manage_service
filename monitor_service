@@ -75,7 +75,10 @@ class MonitorService:
             self.log.info('=' * 78)
             self.log.info("대상 서비스 개수 : {}".format(total_cnt))
             self.log.info("정상 실행 중인 서비스 개수 : {}".format(check_cnt))
-            self.log.warning("비정상 실행 중인 서비스 개수 : {}".format(err_cnt))
+            if err_cnt == 0:
+                self.log.info("비정상 실행 중인 서비스 개수 : {}".format(err_cnt))
+            else:
+                self.log.error("비정상 실행 중인 서비스 개수 : {}".format(err_cnt))
             self.log.info('=' * 78)
         except Exception:
             self.log.error(traceback.format_exc())
