@@ -32,8 +32,16 @@ class LogColors(object):
 
 class ColorFormatter(logging.Formatter):
     def format(self, record):
+        # WARNING -> WARN
+        if record.levelname == 'WARNING':
+            record.levelname = 'WARN'
+
         msg = logging.Formatter.format(self, record)
         color = LogColors.COLORS.get(record.levelname, "")
+
+        if record.levelname == 'WARN':
+            color = LogColors.COLORS.get('WARNING', "")
+
         return "{color}{msg}{reset}".format(
             color=color,
             msg=msg,
