@@ -50,8 +50,8 @@ class SUBPROCESSConfig(object):
 class ORAConfig(object):
     db_type = 'oracle'
     # host = '0.0.0.0'
-    host_list = ['10.50.1.118', '10.50.2.12']
-    user = 'minds'
+    host_list = ['10.50.1.123', '10.50.1.321']
+    user = 'jamong'
     password = '1234'
     # ps_path = '/DATA/manage/enc/.password'
     port = 1521
