@@ -12,7 +12,7 @@ class MonitorConfig(object):
     ]
     check_process_list = ['sshd']
     check_service_list = ['print_time']
-    svctl_cmd = "supervisor-kit/svctl"
+    svctl_cmd = "svctl"
     docker_cmd = "docker ps -a --format '{{.Status}}\t{{.Names}}'"
 
 class RestartConfig(object):

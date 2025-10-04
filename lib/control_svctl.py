@@ -25,7 +25,7 @@ from string_packages import StrPack
 ###################
 manage_service_path = os.path.dirname(
     os.path.dirname(os.path.abspath(__file__)))
-manage_root = os.path.dirname(manage_service_path)
+engn_root = os.path.join(os.path.dirname(manage_service_path), 'supervisor-kit')
 
 #########
 # class #
@@ -50,7 +50,7 @@ class Svctl:
             service_dict = dict()
 
             cmd = "{} status".format(
-                os.path.join(manage_root, MonitorConfig.svctl_cmd))
+                os.path.join(engn_root, MonitorConfig.svctl_cmd))
             timeout = 30
 
             self.log.info("supervisor cmd: {}\n".format(cmd))
@@ -109,7 +109,7 @@ class Svctl:
         self.log.info('*' * 100)
 
         svctl_cmd = "{}".format(
-            os.path.join(manage_root, MonitorConfig.svctl_cmd))
+            os.path.join(engn_root, MonitorConfig.svctl_cmd))
 
         for service in self.svc_list:
             action_cmd = "{} {} {}".format(svctl_cmd, action, service)

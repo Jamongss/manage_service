@@ -5,7 +5,7 @@
 __author__ = "Jamongss"
 __date__ = "2023-03-03"
 __last_modified_by__ = "Jamongss"
-__last_modified_date__ = "2025-10-01"
+__last_modified_date__ = "2025-10-04"
 __maintainer__ = "Jamongss"
 
 ###########
@@ -17,7 +17,9 @@ import time
 import logging
 import logging.handlers
 
-# ANSI 컬러 + 굵기
+#########
+# class #
+#########
 class LogColors(object):
     RESET = "\033[0m"
     COLORS = {
@@ -38,6 +40,10 @@ class ColorFormatter(logging.Formatter):
             reset=LogColors.RESET
         )
 
+
+#######
+# def #
+#######
 def get_timed_rotating_logger(**kwargs):
     """
     Python2/3 호환: TimedRotatingFileHandler + 콘솔 컬러 로그
