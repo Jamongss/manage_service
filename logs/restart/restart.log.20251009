@@ -1,0 +1,32 @@
+===================================================================================
+=== SVD Restart Script Started at #오후 ===
+=== Script: init_logging
+=== User: jamong
+=== PID: 18713
+=== Working Directory: /Users/jamong/manage_pack/manage_service
+=== Log Level: INFO
+===================================================================================
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Init] SHELL: /bin/zsh
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Init] Logging initialized - File: /Users/jamong/manage_pack/manage_service/logs/restart/restart.log.20251009, Level: INFO
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Init] SVD Restart Script v1.0
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Init] Current user: jamong
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Init] Current directory: /Users/jamong/manage_pack/manage_service
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Init] Target SVD path: /Users/jamong/manage_pack/manage_service/svd
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Init] Timeout settings - Supervisorctl: 10s, SIGTERM: 5s, Startup wait: 5s
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Main] Starting restart process for: /Users/jamong/manage_pack/manage_service/svd
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Main] ========== SHUTDOWN PHASE ==========
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Graceful_Shutdown] Attempting graceful shutdown via supervisorctl ...
+[WARN] 2025-10-09 16:01:32 [PID:18713] - [Graceful_Shutdown] supervisorctl command not found ...
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Manual_Termination] Attempting manual process termination
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Manual_Termination] No python svd processes found
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Main] Shutdown successful using: manual (signal)
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [CleanUp] Performing cleanup operations
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [CleanUp] Cleanup completed: 0 files removed
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Main] Shutdown phase completed successfully
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Main] ========== STARTUP PHASE ==========
+[INFO] 2025-10-09 16:01:32 [PID:18713] - [Start] Starting supervisord...
+[ERROR] 2025-10-09 16:01:32 [PID:18713] - [Start] supervisord executable not found at: /Users/jamong/manage_pack/manage_service/svd
+[ERROR] 2025-10-09 16:01:32 [PID:18713] - [Main] Startup phase failed
+[ERROR] 2025-10-09 16:01:32 [PID:18713] - [Main] Script execution failed
+=== Script ended at #오후 with exit code: 1 ===
+

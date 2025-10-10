@@ -14,6 +14,7 @@ __maintainer__ = "Jamongss"
 import os
 import re
 import sys
+import traceback
 sys.path.append('../')
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from cfg.config import MonitorConfig
