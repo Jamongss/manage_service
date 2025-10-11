@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+#!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
 """program"""
@@ -93,11 +93,11 @@ class OracleQuery(object):
                         WHERE
                             RGST_DTM < TO_DATE(:target_point, 'YYYY-MM-DD HH24:MI:SS')
                             AND ROWNUM <= 10000;
-                
+
                         rows_deleted := SQL%ROWCOUNT;
-                
+
                         COMMIT;
-                
+
                         EXIT WHEN rows_deleted = 0;
                     END LOOP;
                 END;
@@ -123,11 +123,11 @@ class OracleQuery(object):
                         WHERE
                             RGST_DTM < TO_DATE(:target_point, 'YYYY-MM-DD HH24:MI:SS')
                             AND ROWNUM <= 10000;
-                
+
                         rows_deleted := SQL%ROWCOUNT;
-                
+
                         COMMIT;
-                
+
                         EXIT WHEN rows_deleted = 0;
                     END LOOP;
                 END;
