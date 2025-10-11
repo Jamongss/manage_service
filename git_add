@@ -12,3 +12,4 @@ git status
 git commit -m "$COMMIT_MSG"
 git branch -M main
 git push -u origin main
+
