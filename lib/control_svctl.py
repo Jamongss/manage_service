@@ -32,10 +32,11 @@ engn_root = os.path.join(os.path.dirname(manage_service_path), 'supervisor-kit')
 # class #
 #########
 class Svctl:
-    def __init__(self, log, svc_list,
+    def __init__(self, log, svc_list, py_ver = 'py3',
                  total_cnt = 0, check_cnt = 0, err_cnt = 0):
         self.log = log
         self.svc_list = svc_list
+        self.py_version = py_ver
         self.total_cnt = total_cnt
         self.check_cnt = check_cnt
         self.err_cnt = err_cnt
@@ -61,7 +62,11 @@ class Svctl:
             self.log.info('-' * 78)
 
             sub_proc = SubProcess(cmd, timeout)
-            std_out, std_err = sub_proc.sub_process_run()
+
+            if self.py_version == 2:
+                std_out, std_err = sub_proc.sub_process_popen()
+            if self.py_version == 3:
+                std_out, std_err = sub_proc.sub_process_run()
 
             if std_out is None and std_err is None:
                 raise RuntimeError("ERROR [{}]".format(cmd))
