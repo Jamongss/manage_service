@@ -7,11 +7,13 @@ class MonitorConfig(object):
     log_file_name = 'monitor_service.log'
     backup_count = 5
     log_level = 'info'
+    check_service_list = [
+        'print_time', 'test_string'
+    ]
     check_engine_list = [
-        'former-jamong'
+        'former-jamong', 'haproxy2.5'
     ]
     check_process_list = ['sshd']
-    check_service_list = ['print_time']
     svctl_cmd = "svctl"
     docker_cmd = "docker ps -a --format '{{.Status}}\t{{.Names}}'"
 
