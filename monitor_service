@@ -25,12 +25,16 @@ from lib.check_process import CheckProcess
 # global variable #
 ###################
 manage_root = os.path.dirname(os.path.abspath(__file__))
+major = sys.version_info.major
+minor = sys.version_info.minor
+micro = sys.version_info.micro
 
 #########
 # class #
 #########
 class MonitorService:
     def __init__(self):
+        self.py_version = major
         self.log = get_timed_rotating_logger(
             logger_name=MonitorConfig.logger_name,
             log_dir_path=os.path.join(manage_root, MonitorConfig.log_dir_path),
@@ -38,6 +42,7 @@ class MonitorService:
             backup_count=MonitorConfig.backup_count,
             log_level=MonitorConfig.log_level
         )
+        self.log.info("Python {}.{}.{}".format(major, minor, micro))
 
     def run(self):
         try:
@@ -48,6 +53,7 @@ class MonitorService:
             c_svctl = Svctl(
                 self.log,
                 svc_list=MonitorConfig.check_service_list,
+                py_ver=self.py_version,
                 total_cnt=total_count,
                 check_cnt=check_count,
                 err_cnt=err_count,
