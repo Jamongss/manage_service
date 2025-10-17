@@ -32,8 +32,14 @@ engn_root = os.path.join(os.path.dirname(manage_service_path), 'supervisor-kit')
 # class #
 #########
 class Svctl:
-    def __init__(self, log, svc_list, py_ver = 'py3',
-                 total_cnt = 0, check_cnt = 0, err_cnt = 0):
+    def __init__(self,
+                 log,
+                 svc_list,
+                 py_ver = 'py3',
+                 total_cnt = 0,
+                 check_cnt = 0,
+                 err_cnt = 0
+                 ):
         self.log = log
         self.svc_list = svc_list
         self.py_version = py_ver
