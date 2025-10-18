@@ -7,7 +7,7 @@
  -> Main Script list
 -----------------------------------------------------------------------------
   [monitor_service]
-    - Linux service monitor
+    - User service monitor
   [check_memory.sh]
     - 메모리 사용률 높은 process를 내림차순으로 정렬
   [delete_file.py]
@@ -19,10 +19,10 @@
 2. 호환성검증
  -> script 정상동작확인버전
 -----------------------------------------------------------------------------
-  Python Version: python3.9.21 / python3.12.11
-  library Version
+  Python Version: python3.9.21 / python3.10.18 / python3.12.11
+  Library Version
     - docker: 7.1.0
-    - psutil: 5.8.0 / 7.1.0
+    - psutil: 5.8.0 / 7.1.0 / 7.1.0
     - protobuf: 4.23.4
     - grpcio: 1.60.1
     - grpcio-tools: 1.60.1
