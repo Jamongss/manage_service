@@ -6,7 +6,7 @@ class MonitorConfig(object):
     log_dir_path = 'logs/monitor_service'
     log_file_name = 'monitor_service.log'
     backup_count = 5
-    log_level = 'info'
+    log_level = 'debug'
     check_service_list = [
         'print_time', 'test_string'
     ]
