@@ -54,6 +54,7 @@ class MonitorService:
                 self.log,
                 svc_list=MonitorConfig.check_service_list,
                 py_ver=self.py_version,
+                svctl_command=MonitorConfig.svctl_cmd,
                 total_cnt=total_count,
                 check_cnt=check_count,
                 err_cnt=err_count,
