@@ -36,6 +36,7 @@ class Svctl:
                  log,
                  svc_list,
                  py_ver = 'py3',
+                 svctl_command = MonitorConfig.svctl_cmd,
                  total_cnt = 0,
                  check_cnt = 0,
                  err_cnt = 0
@@ -43,6 +44,7 @@ class Svctl:
         self.log = log
         self.svc_list = svc_list
         self.py_version = py_ver
+        self.svctl_cmd = svctl_command
         self.total_cnt = total_cnt
         self.check_cnt = check_cnt
         self.err_cnt = err_cnt
