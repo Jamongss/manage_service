@@ -5,7 +5,7 @@
 __author__ = "Jamongss"
 __date__ = "2024-05-10"
 __last_modified_by__ = "Jamongss"
-__last_modified_date__ = "2025-10-01"
+__last_modified_date__ = "2025-11-07"
 __maintainer__ = "Jamongss"
 
 ###########
@@ -49,15 +49,15 @@ class DeleteFile:
             # noinspection PyBroadException
             try:
                 self.log.info(
-                    "     >>> time_since_creation: {}\tdelete_{}: {}".format(
+                    "\t>>> time_since_creation: {}\tdelete_{}: {}".format(
                         self.time_since_creation, target_type, delete_file_path
                     )
                 )
                 if os.path.islink(delete_file_path):
                     os.remove(delete_file_path)
-                if os.path.isfile(delete_file_path):
+                elif os.path.isfile(delete_file_path):
                     os.remove(delete_file_path)
-                if os.path.isdir(delete_file_path):
+                elif os.path.isdir(delete_file_path):
                     shutil.rmtree(delete_file_path)
             except Exception:
                 # err_str = traceback.format_exc()
@@ -73,7 +73,7 @@ class DeleteFile:
             target_dict_list = DELConfig.target_dict_list
 
             for target_info_dict in target_dict_list:
-                self.log.info('=' * 150)
+                self.log.info('=' * 95)
                 self.log.info(
                     "retention_period : {}\ttarget_path : {}".format(
                         target_info_dict['delete_file_date'],
@@ -86,7 +86,7 @@ class DeleteFile:
                     target_dir_path = target_dir_path[:-1]
                 delete_file_date = int(
                     target_info_dict.get('delete_file_date'))
-                w_ob = os.walk(target_dir_path)
+                w_ob = os.walk(target_dir_path, topdown=False)
                 for dir_path, sub_dirs, files in w_ob:
                     if len(files) == 0 and len(sub_dirs) == 0:
                         if dir_path:
@@ -114,18 +114,31 @@ class DeleteFile:
                             self.del_garbage(target_path, 'file')
                             self.delete_file_cnt += 1
                         else:
-                            self.log.info(
-                                "     >>> time_since_creation: {}\t\
+                            self.log.debug(
+                                "\t>>> time_since_creation: {}\t\
                                 Not_subject_to_deletion: {}".format(
-                                    time_since_creation, target_path
+                                    self.time_since_creation, target_path
                                 )
                             )
 
             proc_start_time, required_time = elapsed_time.run()
-            self.log.info(
-                "[ E N D ] Start time = {}, The time required = {}".format(
-                    proc_start_time, required_time)
-            )
+
+            # Pretty Summary Log
+            self.log.info("=" * 95)
+            self.log.info(" " * 30 + '[ D E L E T I O N   S U M M A R Y ]')
+            self.log.info("=" * 95)
+            self.log.info("  Total Deleted Files       : {:>10,}".format(
+                self.delete_file_cnt))
+            self.log.info("  Total Deleted Directories : {:>10,}".format(
+                self.delete_dir_cnt))
+            self.log.info("  Total Items Deleted       : {:>10,}".format(
+                self.delete_file_cnt + self.delete_dir_cnt))
+            self.log.info("-" * 95)
+            self.log.info("  Process Start Time        : {}".format(
+                proc_start_time))
+            self.log.info("  Time Required             : {}".format(
+                required_time))
+            self.log.info("=" * 95)
         except Exception:
             self.log.error(traceback.format_exc())
             sys.exit(1)
