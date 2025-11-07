@@ -30,7 +30,7 @@ class DELConfig(object):
     log_dir_path = 'logs/delete_file'
     log_file_name = 'delete_file.log'
     backup_count = 3
-    log_level = 'info'
+    log_level = 'debug'
     target_dict_list = [
                 {
                  'directory_path': '/data/dev_area/jamong/manage_pack/manage_service/logs',
