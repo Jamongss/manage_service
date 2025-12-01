@@ -99,7 +99,7 @@ class DeleteFile:
                                 and time_since_creation >= delete_file_date
                             ):
                                 self.log.info('Empty directory')
-                                self.del_garbage(dir_path, 'dir')
+                                # self.del_garbage(dir_path, 'dir')
                                 self.delete_dir_cnt += 1
                     for file_path in files:
                         target_path = os.path.join(dir_path, file_path)
@@ -111,7 +111,7 @@ class DeleteFile:
                             target_path
                             and self.time_since_creation >= delete_file_date
                         ):
-                            self.del_garbage(target_path, 'file')
+                            # self.del_garbage(target_path, 'file')
                             self.delete_file_cnt += 1
                         else:
                             self.log.debug(
