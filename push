@@ -130,20 +130,52 @@ check_git_status() {
     log_info "[Status] Current branch: $current_branch"
 
     # 변경사항 확인
-    if git diff --quiet && git diff --cached --quiet; then
-        log_warn "[Status] No changes detected in working directory"
+    local has_working_changes=false
+    local has_unpushed_commits=false
+
+    if ! git diff --quiet || ! git diff --cached --quiet; then
+        has_working_changes=true
+        log_info "[Status] Changes detected in working directory"
+    fi
+
+    # unpushed 커밋 확인
+    local unpushed_count=$(git log --branches --not --remotes --oneline 2>/dev/null | wc -l)
+    # 공백 제거
+    unpushed_count=$(echo "$unpushed_count" | tr -d ' ')
+
+    if [ -n "$unpushed_count" ] && [ "$unpushed_count" -gt 0 ] 2>/dev/null; then
+        has_unpushed_commits=true
+        log_info "[Status] Unpushed commits detected: $unpushed_count commit(s)"
+    fi
+
+    # 둘 다 없으면 종료
+    if [ "$has_working_changes" = false ] && [ "$has_unpushed_commits" = false ]; then
+        log_warn "[Status] No changes in working directory and no unpushed commits"
         return 1
     fi
 
-    log_info "[Status] Changes detected in working directory"
-
     # 변경 내역 로그
-    log_info "[Status] Current git status:"
-    {
-        echo "============================== git status =============================="
-        git status --short
-        echo "========================================================================"
-    } | tee -a "$LOG_FILE"
+    if [ "$has_working_changes" = true ]; then
+        log_info "[Status] Current git status:"
+        {
+            echo "============================== git status =============================="
+            git status --short
+            echo "========================================================================"
+        } | tee -a "$LOG_FILE"
+    fi
+
+    if [ "$has_unpushed_commits" = true ]; then
+        log_info "[Status] Unpushed commits:"
+        {
+            echo "========================== unpushed commits ==========================="
+            git log --branches --not --remotes --oneline
+            echo "========================================================================"
+        } | tee -a "$LOG_FILE"
+    fi
+
+    # 상태 변수를 전역으로 export (메인 로직에서 사용)
+    export HAS_WORKING_CHANGES="$has_working_changes"
+    export HAS_UNPUSHED_COMMITS="$has_unpushed_commits"
 
     return 0
 }
@@ -382,35 +414,44 @@ main() {
 
     # Git 상태 확인
     if ! check_git_status; then
-        log_info "[Main] No changes to commit"
+        log_info "[Main] No changes to commit and no unpushed commits"
         return 0
     fi
 
-    # 브랜치 처리
-    if [ "$use_existing_branch" = false ]; then
-        # 새 브랜치 생성
-        if [ -z "$branch_name" ]; then
-            branch_name=$(generate_branch_name "$branch_prefix")
-            log_info "[Main] Auto-generated branch name: $branch_name"
-        fi
-
-        if ! create_and_checkout_branch "$branch_name"; then
-            return 1
-        fi
-    else
-        # 기존 브랜치 사용
+    # unpushed 커밋만 있고 working directory가 clean한 경우
+    if [ "$HAS_WORKING_CHANGES" = false ] && [ "$HAS_UNPUSHED_COMMITS" = true ]; then
+        log_info "[Main] Only unpushed commits detected, skipping add/commit steps"
         branch_name=$(git branch --show-current)
-        log_info "[Main] Using existing branch: $branch_name"
-    fi
+        log_info "[Main] Using current branch: $branch_name"
+    else
+        # 브랜치 처리
+        if [ "$use_existing_branch" = false ]; then
+            # 새 브랜치 생성
+            if [ -z "$branch_name" ]; then
+                branch_name=$(generate_branch_name "$branch_prefix")
+                log_info "[Main] Auto-generated branch name: $branch_name"
+            fi
 
-    # Git add 실행
-    if ! perform_git_add "$add_pattern"; then
-        return 1
-    fi
+            if ! create_and_checkout_branch "$branch_name"; then
+                return 1
+            fi
+        else
+            # 기존 브랜치 사용
+            branch_name=$(git branch --show-current)
+            log_info "[Main] Using existing branch: $branch_name"
+        fi
 
-    # Git commit 실행
-    if ! perform_git_commit "$commit_message"; then
-        return 1
+        # Git add 실행 (working changes가 있을 때만)
+        if [ "$HAS_WORKING_CHANGES" = true ]; then
+            if ! perform_git_add "$add_pattern"; then
+                return 1
+            fi
+
+            # Git commit 실행
+            if ! perform_git_commit "$commit_message"; then
+                return 1
+            fi
+        fi
     fi
 
     # Git push 실행
