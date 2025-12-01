@@ -133,9 +133,16 @@ check_git_status() {
     local has_working_changes=false
     local has_unpushed_commits=false
 
+    # Modified/staged 파일 확인
     if ! git diff --quiet || ! git diff --cached --quiet; then
         has_working_changes=true
         log_info "[Status] Changes detected in working directory"
+    fi
+
+    # Untracked 파일 확인
+    if [ -n "$(git ls-files --others --exclude-standard)" ]; then
+        has_working_changes=true
+        log_info "[Status] Untracked files detected"
     fi
 
     # unpushed 커밋 확인
