@@ -3,3 +3,6 @@ __pycache__
 cfg/__pycache__
 lib/__pycache__
 *.pyc
+*.pem
+*.ppk
+*.swp
