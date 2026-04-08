@@ -36,7 +36,7 @@ class OracleConnect(object):
         else:
             self.log = get_timed_rotating_logger(
                 logger_name='ORACLE_CONNECTION',
-                log_dir_path=os.path.join(os.path.dirname(os.path.abspath(__file__)), '..', 'logs', 'db_connection'),
+                log_dir_path='/Users/jamong/manage_pack/manage_service/logs/db_connection',
                 log_file_name='ora_connection.log',
                 backup_count=1,
                 log_level='info'
